@@ -1,0 +1,36 @@
+version: "3"
+services:
+  baseCampaignService:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bm/base-campaign-service
+    container_name: baseCampaignService
+    restart: unless-stopped
+    volumes:
+    - ./:/var/www
+    - ./config/php/local.ini:/var/local/etc/php/conf.d/local.ini
+  campaignWebserver:
+    build:
+      context: .
+      dockerfile: Dockerfile_Nginx
+    image: bm/nginx
+    container_name: campaignWebserver
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./config/nginx/conf.d/:/etc/nginx/conf.d
+    depends_on:
+      - baseCampaignService
+  campaigncron:
+    build:
+      context: .
+      dockerfile: cron.dockerfile
+    container_name: campaigncron
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www
+
+

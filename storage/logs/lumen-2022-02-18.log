@@ -1,0 +1,17 @@
+[2022-02-18 19:31:35] local.ERROR: Command "schedule:list" is not defined.
+
+Did you mean one of these?
+    queue:listen
+    schedule:run {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"schedule:list\" is not defined.
+
+Did you mean one of these?
+    queue:listen
+    schedule:run at /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/symfony/console/Application.php:678)
+[stacktrace]
+#0 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/symfony/console/Application.php(255): Symfony\\Component\\Console\\Application->find('schedule:list')
+#1 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/symfony/console/Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/console/Application.php(92): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Console/Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 

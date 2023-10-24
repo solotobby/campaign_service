@@ -1,0 +1,77 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - |
+        #Update
+        apt-get update
+        # Install SQLITE3
+        apt-get install -y sqlite3
+        #Install composer
+        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        php composer-setup.php ;
+        php -r "unlink('composer-setup.php');" ;
+        mv composer.phar /usr/local/bin/composer
+      - echo logging in to Amazon ECR
+      - aws --version
+      - echo $AWS_DEFAULT_REGION
+      - RUNTIME_REPOSITORY_URI=559336548740.dkr.ecr.eu-west-1.amazonaws.com/campaign-service
+      - WEBSERVER_REPOSITORY_URL=559336548740.dkr.ecr.eu-west-1.amazonaws.com/base-campaign-nginx-server
+      - CRON_REPOSITORY_URL=559336548740.dkr.ecr.eu-west-1.amazonaws.com/base-campaign-cron
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SERVICE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=dev}
+      - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 559336548740.dkr.ecr.eu-west-1.amazonaws.com
+      - docker pull $RUNTIME_REPOSITORY_URI:dev
+      - docker pull $WEBSERVER_REPOSITORY_URL:dev
+  build:
+    commands:
+      - echo Build started on `date`
+      - aws s3 cp s3://${S3_ENVIRONMENT_BUCKET}/base/${SERVICE}/${ENVIRONMENT_FILE} .env
+      - echo commit hash $COMMIT_HASH
+      - echo Installing composer deps
+      - composer install --ignore-platform-reqs
+      - composer dump-autoload
+      - aws s3 cp s3://bm-environment-variables/monnyme-remit/monnyremit-api/docker.key docker.key
+      - docker login -u bmafricadev --password-stdin < docker.key
+      - docker build -t $RUNTIME_REPOSITORY_URI:dev .
+      - docker tag $RUNTIME_REPOSITORY_URI:dev $RUNTIME_REPOSITORY_URI:$IMAGE_TAG
+      - docker build --cache-from $RUNTIME_REPOSITORY_URI:dev -t $WEBSERVER_REPOSITORY_URL:dev -f Dockerfile_Nginx .
+      - docker tag $WEBSERVER_REPOSITORY_URL:dev $WEBSERVER_REPOSITORY_URL:$IMAGE_TAG
+      - docker build --cache-from $WEBSERVER_REPOSITORY_URL:dev -t $CRON_REPOSITORY_URL:dev -f cron.dockerfile .
+      - docker tag $CRON_REPOSITORY_URL:dev $CRON_REPOSITORY_URL:$IMAGE_TAG
+#      - touch database/database.sqlite
+#      - php artisan migrate --database=sqlite --force
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - docker push $RUNTIME_REPOSITORY_URI:dev
+      - docker push $RUNTIME_REPOSITORY_URI:$IMAGE_TAG
+      - docker push $WEBSERVER_REPOSITORY_URL:dev
+      - docker push $WEBSERVER_REPOSITORY_URL:$IMAGE_TAG
+      - docker push $CRON_REPOSITORY_URL:dev
+      - docker push $CRON_REPOSITORY_URL:$IMAGE_TAG
+      - echo creating image definition
+      - >
+        printf '[{"name": "runtime", "imageUri": "%s", "portMappings": [{ ":hostPort": 9000} ]}, {"name": "webserver", "imageUri": "%s", "portMappings": [{ "hostPort": 80 }]}, {"name": "worker", "imageUri": "%s", "portMappings": [{ "hostPort": 80 }]}]' $RUNTIME_REPOSITORY_URI:$IMAGE_TAG $WEBSERVER_REPOSITORY_URL:$IMAGE_TAG $CRON_REPOSITORY_URL:$IMAGE_TAG > imageDefinition.json
+      #- echo Checking
+      #- echo creating queue
+      #- php artisan queue:table 
+      #- echo creating failed queue
+      #- php artisan queue:failed-table
+      - echo migrating database
+      - php artisan migrate
+      - echo seeding database
+      - php artisan db:seed
+      - echo restarting queue
+      - php artisan queue:restart
+      - echo Clear cache
+      - php artisan cache:clear
+      - echo Refresh composer
+      - composer dump-autoload
+      # Do you need to do this? In many cases phpunit will use sqlite or similar to avoid the need for a real DB.
+      # If you don't need it delete it
+      # - /usr/bin/mysql  -u root -e "GRANT ALL ON *.* TO 'test'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION"
+      # - mysqladmin -u test create test
+#      - ./vendor/bin/phpunit
+artifacts:
+  files: imageDefinition.json

@@ -1,0 +1,99 @@
+[2022-02-21 11:01:21] local.ERROR: Command "make:migrations" is not defined.
+
+Did you mean one of these?
+    make:export
+    make:import
+    make:migration
+    make:seeder {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"make:migrations\" is not defined.
+
+Did you mean one of these?
+    make:export
+    make:import
+    make:migration
+    make:seeder at /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/symfony/console/Application.php:678)
+[stacktrace]
+#0 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/symfony/console/Application.php(255): Symfony\\Component\\Console\\Application->find('make:migrations')
+#1 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/symfony/console/Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/console/Application.php(92): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Console/Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2022-02-21 12:10:02] local.ERROR: Class 'League\Flysystem\AwsS3v3\AwsS3Adapter' not found {"exception":"[object] (Error(code: 0): Class 'League\\Flysystem\\AwsS3v3\\AwsS3Adapter' not found at /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/filesystem/FilesystemManager.php:214)
+[stacktrace]
+#0 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/filesystem/FilesystemManager.php(132): Illuminate\\Filesystem\\FilesystemManager->createS3Driver(Array)
+#1 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/filesystem/FilesystemManager.php(101): Illuminate\\Filesystem\\FilesystemManager->resolve('s3')
+#2 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/filesystem/FilesystemManager.php(78): Illuminate\\Filesystem\\FilesystemManager->get('s3')
+#3 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/support/Facades/Facade.php(261): Illuminate\\Filesystem\\FilesystemManager->disk('s3')
+#4 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/app/Http/Controllers/MediaController.php(25): Illuminate\\Support\\Facades\\Facade::__callStatic('disk', Array)
+#5 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(36): App\\Http\\Controllers\\MediaController->storeMedia(Object(Laravel\\Lumen\\Http\\Request))
+#6 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#7 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#8 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Laravel\\Lumen\\Application), Array, Object(Closure))
+#9 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/Container.php(614): Illuminate\\Container\\BoundMethod::call(Object(Laravel\\Lumen\\Application), Array, Array, NULL)
+#10 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(386): Illuminate\\Container\\Container->call(Array, Array)
+#11 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(352): Laravel\\Lumen\\Application->callControllerCallable(Array, Array)
+#12 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(326): Laravel\\Lumen\\Application->callLumenController(Object(App\\Http\\Controllers\\MediaController), 'storeMedia', Array)
+#13 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(279): Laravel\\Lumen\\Application->callControllerAction(Array)
+#14 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(264): Laravel\\Lumen\\Application->callActionOnArrayBasedRoute(Array)
+#15 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(166): Laravel\\Lumen\\Application->handleFoundRoute(Array)
+#16 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#17 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/app/Http/Middleware/CorsMiddleware.php(31): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#18 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/pipeline/Pipeline.php(167): App\\Http\\Middleware\\CorsMiddleware->handle(Object(Laravel\\Lumen\\Http\\Request), Object(Closure))
+#19 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#20 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/pipeline/Pipeline.php(103): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#21 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(423): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#22 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(172): Laravel\\Lumen\\Application->sendThroughPipeline(Array, Object(Closure))
+#23 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(109): Laravel\\Lumen\\Application->dispatch(NULL)
+#24 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/public/index.php(28): Laravel\\Lumen\\Application->run()
+#25 {main}
+"} 
+[2022-02-21 13:20:39] local.ERROR: Undefined variable: music_url {"exception":"[object] (ErrorException(code: 0): Undefined variable: music_url at /Users/olubiyomayowa/Documents/BMA/base-campaign-service/app/Http/Controllers/MediaController.php:34)
+[stacktrace]
+#0 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/app/Http/Controllers/MediaController.php(34): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}(8, 'Undefined varia...', '/Users/olubiyom...', 34, Array)
+#1 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(36): App\\Http\\Controllers\\MediaController->storeMedia(Object(Laravel\\Lumen\\Http\\Request))
+#2 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#3 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#4 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Laravel\\Lumen\\Application), Array, Object(Closure))
+#5 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/Container.php(614): Illuminate\\Container\\BoundMethod::call(Object(Laravel\\Lumen\\Application), Array, Array, NULL)
+#6 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(386): Illuminate\\Container\\Container->call(Array, Array)
+#7 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(352): Laravel\\Lumen\\Application->callControllerCallable(Array, Array)
+#8 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(326): Laravel\\Lumen\\Application->callLumenController(Object(App\\Http\\Controllers\\MediaController), 'storeMedia', Array)
+#9 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(279): Laravel\\Lumen\\Application->callControllerAction(Array)
+#10 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(264): Laravel\\Lumen\\Application->callActionOnArrayBasedRoute(Array)
+#11 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(166): Laravel\\Lumen\\Application->handleFoundRoute(Array)
+#12 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#13 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/app/Http/Middleware/CorsMiddleware.php(31): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#14 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/pipeline/Pipeline.php(167): App\\Http\\Middleware\\CorsMiddleware->handle(Object(Laravel\\Lumen\\Http\\Request), Object(Closure))
+#15 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#16 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/pipeline/Pipeline.php(103): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#17 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(423): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#18 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(172): Laravel\\Lumen\\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(109): Laravel\\Lumen\\Application->dispatch(NULL)
+#20 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/public/index.php(28): Laravel\\Lumen\\Application->run()
+#21 {main}
+"} 
+[2022-02-21 13:21:19] local.ERROR: Call to a member function getClientOriginalExtension() on null {"exception":"[object] (Error(code: 0): Call to a member function getClientOriginalExtension() on null at /Users/olubiyomayowa/Documents/BMA/base-campaign-service/app/Http/Controllers/MediaController.php:24)
+[stacktrace]
+#0 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(36): App\\Http\\Controllers\\MediaController->storeMedia(Object(Laravel\\Lumen\\Http\\Request))
+#1 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#2 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#3 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Laravel\\Lumen\\Application), Array, Object(Closure))
+#4 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/container/Container.php(614): Illuminate\\Container\\BoundMethod::call(Object(Laravel\\Lumen\\Application), Array, Array, NULL)
+#5 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(386): Illuminate\\Container\\Container->call(Array, Array)
+#6 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(352): Laravel\\Lumen\\Application->callControllerCallable(Array, Array)
+#7 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(326): Laravel\\Lumen\\Application->callLumenController(Object(App\\Http\\Controllers\\MediaController), 'storeMedia', Array)
+#8 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(279): Laravel\\Lumen\\Application->callControllerAction(Array)
+#9 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(264): Laravel\\Lumen\\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(166): Laravel\\Lumen\\Application->handleFoundRoute(Array)
+#11 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#12 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/app/Http/Middleware/CorsMiddleware.php(31): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#13 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/pipeline/Pipeline.php(167): App\\Http\\Middleware\\CorsMiddleware->handle(Object(Laravel\\Lumen\\Http\\Request), Object(Closure))
+#14 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#15 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/illuminate/pipeline/Pipeline.php(103): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}(Object(Laravel\\Lumen\\Http\\Request))
+#16 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(423): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#17 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(172): Laravel\\Lumen\\Application->sendThroughPipeline(Array, Object(Closure))
+#18 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(109): Laravel\\Lumen\\Application->dispatch(NULL)
+#19 /Users/olubiyomayowa/Documents/BMA/base-campaign-service/public/index.php(28): Laravel\\Lumen\\Application->run()
+#20 {main}
+"} 

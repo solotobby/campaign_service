@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateGreenCardTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('green_cards', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('audience_id');
+            $table->string('campaign_id');
+            $table->string('campaign_subscription_plan_id');
+            $table->string('ticket_number');
+            $table->date('date');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('green_card');
+    }
+}
